@@ -106,14 +106,7 @@ firebaseRef.on("value", function (snapshot) {
 
 let doorOn = document.querySelector(".toggle-door");
 doorOn.onclick = function () {
-  notify({
-    title: 'Success',
-    message: 'Tool is on',
-    type: 'success',
-    duration: 1000
-  });  
   doorOn.classList.toggle("active"); 
-  document.querySelector('.door-img').src='./door1.png'
   firebase.database().ref('tools').update({
     'door': 1
   });
@@ -121,7 +114,6 @@ doorOn.onclick = function () {
 let doorOff = document.querySelector(".toggle-door-active");
 doorOff.onclick = function () {
   doorOff.classList.toggle("active"); 
-  document.querySelector('.door-img').src='./door.png'
   firebase.database().ref('tools').update({
     'door': 0
   });
@@ -133,10 +125,24 @@ door.on("value", function (snap){
   if(doorStatus == 0 ){
     document.getElementById("check-door").style.display="block"
     document.getElementById("check-door-active").style.display="none"
+    document.querySelector('.door-img').src='./door.png'
+    notify({
+      title: 'Error',
+      message: 'Tool is off',
+      type: 'error',
+      duration: 1000
+    });  
   }
   else{
     document.getElementById("check-door").style.display="none"
     document.getElementById("check-door-active").style.display="block"
+    document.querySelector('.door-img').src='./door1.png'
+    notify({
+      title: 'Success',
+      message: 'Tool is on',
+      type: 'success',
+      duration: 1000
+    });  
   }
 });
 
@@ -144,14 +150,7 @@ door.on("value", function (snap){
 
 let lightOn = document.querySelector(".toggle-light");
 lightOn.onclick = function () {
-  notify({
-    title: 'Success',
-    message: 'Tool is on',
-    type: 'success',
-    duration: 1000
-  });  
   lightOn.classList.toggle("active"); 
-  document.querySelector('.light-img').src='./light-bulb1.png'
   firebase.database().ref('tools').update({
     'light': 1
   });
@@ -159,7 +158,6 @@ lightOn.onclick = function () {
 let lightOff = document.querySelector(".toggle-light-active");
 lightOff.onclick = function () {
   lightOff.classList.toggle("active"); 
-  document.querySelector('.light-img').src='./light-bulb.png'
   firebase.database().ref('tools').update({
     'light': 0
   });
@@ -171,10 +169,24 @@ light.on("value", function (snap){
   if(lightStatus == 0 ){
     document.getElementById("check-light").style.display="block"
     document.getElementById("check-light-active").style.display="none"
+    document.querySelector('.light-img').src='./light-bulb.png'
+    notify({
+      title: 'Error',
+      message: 'Tool is off',
+      type: 'error',
+      duration: 1000
+    });  
   }
   else{
     document.getElementById("check-light").style.display="none"
     document.getElementById("check-light-active").style.display="block"
+    document.querySelector('.light-img').src='./light-bulb1.png'
+    notify({
+      title: 'Success',
+      message: 'Tool is on',
+      type: 'success',
+      duration: 1000
+    });  
   }
 });
 
@@ -182,14 +194,7 @@ light.on("value", function (snap){
 
 let fanOn = document.querySelector(".toggle-fan");
 fanOn.onclick = function () {
-  notify({
-    title: 'Success',
-    message: 'Tool is on',
-    type: 'success',
-    duration: 1000
-  });  
   fanOn.classList.toggle("active"); 
-  document.querySelector('.fan-img').src='./fan.gif';
   firebase.database().ref('tools').update({
     'fan': 1
   });
@@ -198,7 +203,6 @@ fanOn.onclick = function () {
 let fanOff = document.querySelector(".toggle-fan-active");
 fanOff.onclick = function () {
   fanOff.classList.toggle("active"); 
-  document.querySelector('.fan-img').src='./fan.png';
   firebase.database().ref('tools').update({
     'fan': 0
   });
@@ -210,10 +214,24 @@ fan.on("value", function (snap){
   if(fanStatus == 0 ){
     document.getElementById("check-fan").style.display="block"
     document.getElementById("check-fan-active").style.display="none"
+    document.querySelector('.fan-img').src='./fan.png';
+    notify({
+      title: 'Error',
+      message: 'Tool is off',
+      type: 'error',
+      duration: 1000
+    });  
   }
   else{
     document.getElementById("check-fan").style.display="none"
     document.getElementById("check-fan-active").style.display="block"
+    document.querySelector('.fan-img').src='./fan.gif';
+    notify({
+      title: 'Success',
+      message: 'Tool is on',
+      type: 'success',
+      duration: 1000
+    })
   }
 });
 
@@ -221,22 +239,15 @@ fan.on("value", function (snap){
 
 let waterOn = document.querySelector(".toggle-water");
 waterOn.onclick = function () {
-  notify({
-    title: 'Success',
-    message: 'Tool is on',
-    type: 'success',
-    duration: 1000
-  });  
   waterOn.classList.toggle("active"); 
-  document.querySelector('.water-img').src='./water.gif'
   firebase.database().ref('tools').update({
-    'water': 1
-  });
+    'water': 1,
+  }
+  );
 };
 let waterOff = document.querySelector(".toggle-water-active");
 waterOff.onclick = function () {
   waterOff.classList.toggle("active"); 
-  document.querySelector('.water-img').src='./water-drop.png'
   firebase.database().ref('tools').update({
     'water': 0
   });
@@ -246,14 +257,29 @@ let water = firebase.database().ref("tools/water");
 water.on("value", function (snap){
   let waterStatus=snap.val();
   if(waterStatus == 0 ){
+    document.querySelector('.water-img').src='./water-drop.png'
     document.getElementById("check-water").style.display="block"
     document.getElementById("check-water-active").style.display="none"
+    notify({
+      title: 'Error',
+      message: 'Tool is off',
+      type: 'error',
+      duration: 1000
+    });  
   }
   else{
     document.getElementById("check-water").style.display="none"
     document.getElementById("check-water-active").style.display="block"
+    document.querySelector('.water-img').src='./water.gif'
+    notify({
+      title: 'Success',
+      message: 'Tool is on',
+      type: 'success',
+      duration: 1000
+    })
   }
-});
+  }
+);
 
 //-------------------------- Notify message  -------------------------
 function notify({
@@ -292,12 +318,4 @@ function notify({
       }, duration + 1000);
     };
   }
-function showErrorNotify(){
-    notify({
-      title: 'Error',
-      message: 'Tool is off',
-      type: 'error',
-      duration: 1000
-    });  
-}
   
