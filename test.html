@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./fontawesome-free-6.3.0-web/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+    <div class="sliderbar active">
+        <div class="logo-details">
+            <i class="fa-brands fa-google"></i>
+            <span class="logo_name">Dat Duy</span>
+        </div>
+        <ul class="navlink">
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="link_name">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-address-book"></i>
+                    <span class="link_name">Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span class="link_name">Help</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="link_name">Setting</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- ----------------------Home content------------------------- -->
+    <section class="home-section">
+        <div id="notify"></div>
+        <nav>
+            <div class="slider-button">
+                <i class="fa-solid fa-bars sliderbarBtn"></i>
+                <span class="menu">Menu</span>
+            </div>
+            <div class="search-box ">
+                <i class="fa-solid fa-magnifying-glass searchBtn"></i>
+                <input class="text active" type="text" placeholder="Search...">
+            </div>
+            <div class="profile-details">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </nav>
+
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="left-side">
+                        <div class="box_topic">Temp</div>
+                        <div class="number Temp"></div>
+                        <div class="indicator">
+                            <i class="fa-solid fa-temperature-three-quarters"></i>
+                            <span class="text">Lastest Upgrade</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box2">
+                    <div class="left-side">
+                        <div class="box_topic">Humid</div>
+                        <div class="number Humid"></div>
+                        <div class="indicator">
+                            <i class="fa-solid fa-sensor-cloud"></i>
+                            <span class="text">Lastest Upgrade</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box3">
+                    <div class="left-side">
+                        <div class="box_topic">Insen</div>
+                        <div class="number Insen"></div>
+                        <div class="indicator">
+                            <i class="fa-solid fa-sensor"></i>
+                            <span class="text">Lastest Upgrade</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- -------------------------Chart------------------------------------ -->
+        <div class="chart">
+            <div class="chart_card">
+                <p class="chart_tiltle">Bar_Chart</p>
+                <div id="bar-chart" style="width: 750px; min-width: 250px; height: 400px;"></div>
+            </div>
+            <div class="chart_card">
+                <p class="chart_tiltle">Line_Chart</p>
+                <div id="line-chart" style="width: 750px; min-width: 250px; height: 400px;"></div>
+            </div>
+        </div>
+
+        <!-- -------------------------Tools------------------------------------ -->
+
+        <div class="tools-content">
+            <div class="door">          
+                <img class="door-img" src="door.png" alt="" >     
+                <!-- <span class="text"> Door </span> -->
+                <!-- <button id="check-door1">dat</button> -->
+                <div class="toggle-door" id="check-door">
+                    <div class="button-door"></div>
+                </div>
+                <div class="toggle-door-active" id="check-door-active">
+                    <div onclick="showErrorNotify();"  class="button-door-active"></div>
+                </div>
+            </div>
+            <div class="light">
+                <img class="light-img" src="light-bulb.png" alt="">     
+                <!-- <span class="text"> Light </span> -->
+                <div class="toggle-light" id="check-light">
+                    <div class="button-light"></div>
+                </div>
+                <div class="toggle-light-active" id="check-light-active">
+                    <div onclick="showErrorNotify();" class="button-light-active"></div>
+                </div>
+            </div>
+            <div class="fan"> 
+                <img class="fan-img" src="fan.png" alt="">     
+                <!-- <span class="text"> Fan </span> -->
+                <div class="toggle-fan" id="check-fan">
+                    <div class="button-fan"></div>
+                </div>
+                <div class="toggle-fan-active" id="check-fan-active">
+                    <div onclick="showErrorNotify();" class="button-fan-active"></div>
+                </div>
+            </div>
+            <div class="water"> 
+                <img class="water-img" src="water-drop.png" alt="">     
+                <!-- <span class="text"> </span> -->
+                <div class="toggle-water" id="check-water">
+                    <div class="button-water"></div>
+                </div>
+                <div class="toggle-water-active" id="check-water-active">
+                    <div onclick="showErrorNotify();" class="button-water-active"></div>
+                </div>
+            </div>
+
+        </div>
+                <button onclick="myFunction()">Show</button>
+                <div id="snackbar">Hello, Tui minh la Duy Dat day</div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.37.1/apexcharts.min.js"></script>
+    <script src="test.js"> </script>
+
+
+</body>
+
+</html>
